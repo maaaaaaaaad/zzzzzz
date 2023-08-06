@@ -1,4 +1,4 @@
-package com.mad.mad.controllers;
+package com.mad.mad.application.presentation;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,9 +23,11 @@ public class RootController {
 
     @GetMapping("/")
     @ResponseBody
-    public String init(@RequestParam("name") String name) {
+    public Welcome init(@RequestParam("name") String name) {
         Welcome welcome = new Welcome();
         welcome.setName(name);
-        return welcome.getName();
+        return welcome;
     }
+
+
 }
