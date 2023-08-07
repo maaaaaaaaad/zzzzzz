@@ -9,14 +9,18 @@ import org.junit.jupiter.api.Test;
 
 public class TemporaryMemberRepositoryTest {
 
+    final String testName = "mad";
+
     MemberRepository repository = new TemporaryMemberRepository();
 
     @Test()
     public void save() {
         Member member = new Member();
-        member.setName("mad");
+        member.setName(this.testName);
         repository.save(member);
         Member result = repository.findByName(member.getName()).get();
         Assertions.assertThat(member).isEqualTo(result);
+        Assertions.assertThat(result.getName()).isEqualTo(this.testName);
+        Assertions.assertThat(result.getName()).isNotEmpty();
     }
 }
