@@ -7,6 +7,8 @@ import com.mad.mad.domain.repository.TemporaryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
+
 public class TemporaryMemberRepositoryTest {
     final String testName = "mad";
     MemberRepository repository = new TemporaryMemberRepository();
@@ -24,5 +26,14 @@ public class TemporaryMemberRepositoryTest {
         Assertions.assertThat(this.member).isEqualTo(resultByName);
         Assertions.assertThat(resultByName.getName()).isEqualTo(this.testName);
         Assertions.assertThat(resultByName.getName()).isNotEmpty();
+    }
+
+    @Test()
+    public void findById() {
+        Optional<Member> empty = repository.findById(1000L);
+        Assertions.assertThat(empty).isEmpty();
+        this.save();
+        Member result = repository.findById(this.member.getId()).get();
+        Assertions.assertThat(result.getId()).isEqualTo(this.member.getId());
     }
 }
