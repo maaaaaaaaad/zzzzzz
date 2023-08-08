@@ -15,6 +15,19 @@ public class TemporaryMemberRepositoryTest {
     MemberRepository repository = new TemporaryMemberRepository();
     Member member = new Member();
 
+
+    @Test()
+    public void findById() {
+        Optional<Member> empty = repository.findById(1000L);
+        assertThat(empty).isEmpty();
+    }
+
+    @Test()
+    public void findByName() {
+        Optional<Member> empty = repository.findByName(this.testName);
+        assertThat(empty).isEmpty();
+    }
+
     @Test()
     public void save() {
         this.member.setName(this.testName);
@@ -29,9 +42,4 @@ public class TemporaryMemberRepositoryTest {
         assertThat(resultByName.getName()).isNotEmpty();
     }
 
-    @Test()
-    public void findById() {
-        Optional<Member> empty = repository.findById(1000L);
-        assertThat(empty).isEmpty();
-    }
 }
