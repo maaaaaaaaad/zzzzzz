@@ -24,4 +24,10 @@ public class TemporaryMemberRepositoryTest {
         assertThat(id).isNotNull();
     }
 
+    @Test()
+    public void findByName() {
+        final String name = member.getName();
+        Optional<Member> result = repository.findByName(name);
+        assertThat(name).isNotEqualTo(result);
+    }
 }
