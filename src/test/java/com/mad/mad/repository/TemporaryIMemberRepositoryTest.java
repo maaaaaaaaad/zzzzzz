@@ -2,16 +2,16 @@ package com.mad.mad.repository;
 
 
 import com.mad.mad.domain.entity.Member;
-import com.mad.mad.domain.repository.TemporaryMemberRepository;
+import com.mad.mad.domain.repository.TemporaryIMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-public class TemporaryMemberRepositoryTest {
+public class TemporaryIMemberRepositoryTest {
 
-    TemporaryMemberRepository repository = new TemporaryMemberRepository();
+    TemporaryIMemberRepository repository = new TemporaryIMemberRepository();
     Member member = new Member();
 
     @AfterEach

@@ -4,7 +4,7 @@ import com.mad.mad.domain.entity.Member;
 
 import java.util.*;
 
-public class TemporaryMemberRepository implements MemberRepository {
+public class TemporaryIMemberRepository implements IMemberRepository {
 
     private static final Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;

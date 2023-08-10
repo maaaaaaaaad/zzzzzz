@@ -1,14 +1,14 @@
 package com.mad.mad.domain.service;
 
 import com.mad.mad.domain.entity.Member;
-import com.mad.mad.domain.repository.MemberRepository;
-import com.mad.mad.domain.repository.TemporaryMemberRepository;
+import com.mad.mad.domain.repository.IMemberRepository;
+import com.mad.mad.domain.repository.TemporaryIMemberRepository;
 
 import java.util.Optional;
 
-public class MemberService {
+public class MemberService implements IMemberService {
 
-    private final MemberRepository repository = new TemporaryMemberRepository();
+    private final IMemberRepository repository = new TemporaryIMemberRepository();
 
     public final Member join(Member member) {
         Optional<Member> name = this.repository.findByName(member.getName());
