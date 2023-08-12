@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 public class MemberController {
 
-    final IMemberService service = new MemberService();
+    private static final IMemberService service = new MemberService();
 
     @GetMapping("/")
     @ResponseBody
