@@ -16,8 +16,7 @@ public class MemberService implements IMemberService {
 
     @Override
     public final Member join(Member member) {
-        Optional<Member> name = repository.findByName(member.getName());
-        name.ifPresent(query -> {
+        repository.findByName(member.getName()).ifPresent(query -> {
             throw new Error("name");
         });
         return repository.save(member);
