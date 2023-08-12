@@ -14,11 +14,15 @@ public class MemberService implements IMemberService {
         this.repository = memberRepository;
     }
 
-    @Override
-    public final Member join(Member member) {
+    private void conflictCheckMember(Member member) {
         repository.findByName(member.getName()).ifPresent(query -> {
             throw new Error("name");
         });
+    }
+
+    @Override
+    public final Member join(Member member) {
+        conflictCheckMember(member);
         return repository.save(member);
     }
 }
