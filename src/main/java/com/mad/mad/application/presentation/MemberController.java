@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController()
 public class MemberController {
 
-    private static final IMemberService service = new MemberService();
+    private final IMemberService service;
+
+    public MemberController(IMemberService service) {
+        this.service = service;
+    }
 
     @GetMapping("/")
     @ResponseBody
     public Member join(@RequestBody() Member member) {
-        return service.join(member);
+        return this.service.join(member);
     }
 }

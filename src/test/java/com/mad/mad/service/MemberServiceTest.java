@@ -8,7 +8,12 @@ import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    IMemberService service = new MemberService();
+    private final IMemberService service;
+
+    public MemberServiceTest(IMemberService service) {
+        this.service = service;
+    }
+
     Member member = new Member();
 
     @Test()

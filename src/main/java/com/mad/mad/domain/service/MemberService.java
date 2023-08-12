@@ -8,7 +8,11 @@ import java.util.Optional;
 
 public class MemberService implements IMemberService {
 
-    private static final IMemberRepository repository = new TemporaryIMemberRepository();
+    private final IMemberRepository repository;
+
+    public MemberService(IMemberRepository memberRepository) {
+        this.repository = memberRepository;
+    }
 
     @Override
     public final Member join(Member member) {
