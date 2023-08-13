@@ -1,15 +1,23 @@
 package com.mad.mad.service;
 
 import com.mad.mad.domain.entity.Member;
+import com.mad.mad.domain.repository.IMemberRepository;
 import com.mad.mad.domain.repository.TemporaryIMemberRepository;
 import com.mad.mad.domain.service.IMemberService;
 import com.mad.mad.domain.service.MemberService;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    private final IMemberService service = new MemberService(new TemporaryIMemberRepository());
+    private IMemberService service;
+
+    @BeforeEach
+    public void beforeEach() {
+        IMemberRepository repository = new TemporaryIMemberRepository();
+        service = new MemberService(repository);
+    }
 
     Member member = new Member();
 
