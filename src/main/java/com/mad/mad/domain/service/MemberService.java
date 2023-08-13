@@ -15,7 +15,7 @@ public class MemberService implements IMemberService {
     }
 
     private void conflictCheckMember(Member member) {
-        repository.findByName(member.getName()).ifPresent(query -> {
+        this.repository.findByName(member.getName()).ifPresent(query -> {
             throw new Error("name");
         });
     }
@@ -23,6 +23,6 @@ public class MemberService implements IMemberService {
     @Override
     public final Member join(Member member) {
         conflictCheckMember(member);
-        return repository.save(member);
+        return this.repository.save(member);
     }
 }
