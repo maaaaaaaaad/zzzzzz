@@ -14,4 +14,6 @@ public interface IMemberRepository {
 
     List<Member> findAll();
 
+    void clearStore();
+
 }
