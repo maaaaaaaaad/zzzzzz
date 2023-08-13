@@ -19,5 +19,7 @@ public class MemberServiceTest {
         final String mad = this.member.getName();
         final Member result = this.service.join(this.member);
         Assertions.assertThat(result.getName()).isEqualTo(mad);
+        final Error error = org.junit.jupiter.api.Assertions.assertThrows(Error.class, () -> this.service.join(this.member));
+        Assertions.assertThat(error.getMessage()).isEqualTo("name");
     }
 }
