@@ -3,6 +3,7 @@ package com.mad.mad.domain.service;
 import com.mad.mad.domain.entity.Member;
 import com.mad.mad.domain.repository.IMemberRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class MemberService implements IMemberService {
@@ -24,5 +25,10 @@ public class MemberService implements IMemberService {
             throw new Error("name");
         });
         return this.repository.save(member);
+    }
+
+    @Override
+    public final List<Member> members() {
+        return this.repository.findAll();
     }
 }

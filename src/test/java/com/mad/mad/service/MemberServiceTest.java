@@ -10,6 +10,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 public class MemberServiceTest {
 
     private IMemberService service;
@@ -21,7 +23,6 @@ public class MemberServiceTest {
         service = new MemberService(repository);
     }
 
-    Member member = new Member();
 
     @AfterEach
     public void afterEach() {
@@ -30,11 +31,23 @@ public class MemberServiceTest {
 
     @Test()
     public void join() {
-        this.member.setName("mad");
-        final String mad = this.member.getName();
-        final Member result = this.service.join(this.member);
+        Member member = new Member();
+        member.setName("mad");
+        final String mad = member.getName();
+        final Member result = this.service.join(member);
         Assertions.assertThat(result.getName()).isEqualTo(mad);
-        final Error error = org.junit.jupiter.api.Assertions.assertThrows(Error.class, () -> this.service.join(this.member));
+        final Error error = org.junit.jupiter.api.Assertions.assertThrows(Error.class, () -> this.service.join(member));
         Assertions.assertThat(error.getMessage()).isEqualTo("name");
+    }
+
+    @Test()
+    public void members() {
+        for (int i = 0; i < 3; i++) {
+            Member member = new Member();
+            member.setName(String.format("mad%d", i + 1));
+            this.service.join(member);
+        }
+        final List<Member> result = this.service.members();
+        Assertions.assertThat(result.size()).isEqualTo(3);
     }
 }
