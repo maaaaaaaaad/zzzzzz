@@ -2,7 +2,6 @@ package com.mad.mad.domain.service;
 
 import com.mad.mad.domain.entity.Member;
 import com.mad.mad.domain.repository.IMemberRepository;
-import com.mad.mad.domain.repository.TemporaryIMemberRepository;
 
 import java.util.Optional;
 
@@ -14,15 +13,16 @@ public class MemberService implements IMemberService {
         this.repository = memberRepository;
     }
 
-    private void conflictCheckMember(Member member) {
-        this.repository.findByName(member.getName()).ifPresent(query -> {
-            throw new Error("name");
-        });
+    private Optional<Member> memberName(Member member) {
+        return this.repository.findByName(member.getName());
     }
 
     @Override
     public final Member join(Member member) {
-        conflictCheckMember(member);
+        Optional<Member> name = memberName(member);
+        name.ifPresent((data) -> {
+            throw new Error("name");
+        });
         return this.repository.save(member);
     }
 }
