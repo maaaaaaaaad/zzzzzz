@@ -2,10 +2,10 @@ package com.mad.mad.application.presentation;
 
 import com.mad.mad.domain.entity.Member;
 import com.mad.mad.domain.service.IMemberService;
-import com.mad.mad.domain.service.MemberService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RestController()
+@Controller
 public class MemberController {
 
     private final IMemberService service;
