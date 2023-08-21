@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class MemberServiceTest {
@@ -42,12 +43,15 @@ public class MemberServiceTest {
 
     @Test()
     public void members() {
+        LinkedList<Member> members = new LinkedList<>();
         for (int i = 0; i < 3; i++) {
             Member member = new Member();
             member.setName(String.format("mad%d", i + 1));
             this.service.join(member);
+            members.push(member);
         }
         final List<Member> result = this.service.members();
+        System.out.println(members.size());
         Assertions.assertThat(result.size()).isEqualTo(3);
     }
 }
