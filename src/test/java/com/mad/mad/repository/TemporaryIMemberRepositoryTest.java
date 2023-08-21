@@ -14,11 +14,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class TemporaryIMemberRepositoryTest {
 
     private IMemberRepository repository;
-    Member member = new Member();
+    private Member member;
+
+    private final String mockUserName = "mad";
 
     @BeforeEach
     public void beforeEach() {
-        repository = new TemporaryIMemberRepository();
+        this.repository = new TemporaryIMemberRepository();
+        this.member = new Member();
     }
 
     @AfterEach
@@ -29,14 +32,14 @@ public class TemporaryIMemberRepositoryTest {
 
     @Test
     public void findByName() {
-        final String mad = "mad";
-        member.setName(mad);
+        member.setName(this.mockUserName);
         Member member1 = repository.save(member);
-        assertThat(mad).isEqualTo(member1.getName());
+        assertThat(this.mockUserName).isEqualTo(member1.getName());
     }
 
     @Test
     public void save() {
+        member.setName(this.mockUserName);
         Member result = repository.save(member);
         long id = result.getId();
         assertThat(id).isEqualTo(1);
