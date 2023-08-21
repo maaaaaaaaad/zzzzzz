@@ -5,6 +5,8 @@ import com.mad.mad.domain.service.IMemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @Controller
 public class MemberController {
 
@@ -14,9 +16,16 @@ public class MemberController {
         this.service = service;
     }
 
-    @GetMapping("/")
-    @ResponseBody
+    @PostMapping("/")
     public Member join(@RequestBody() Member member) {
-        return this.service.join(member);
+        try {
+            return this.service.join(member);
+        } catch (Exception e) {
+            if (Objects.equals(e.getMessage(), "name")) {
+                throw new IllegalArgumentException("name");
+            }
+            throw new RuntimeException(e);
+        }
     }
 }
+
