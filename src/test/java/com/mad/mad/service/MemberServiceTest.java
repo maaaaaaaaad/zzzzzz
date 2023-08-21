@@ -29,6 +29,7 @@ public class MemberServiceTest {
     @AfterEach
     public void afterEach() {
         repository.clearStore();
+        this.members.clear();
     }
 
     @Test()

@@ -1,11 +1,9 @@
 package com.mad.mad.domain.repository;
 
 import com.mad.mad.domain.entity.Member;
-import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
 public class TemporaryIMemberRepository implements IMemberRepository {
 
     private static final Map<Long, Member> store = new HashMap<>();
