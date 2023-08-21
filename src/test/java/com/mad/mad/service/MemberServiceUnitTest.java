@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MemberServiceTest {
+public class MemberServiceUnitTest {
 
     private IMemberService service;
     private IMemberRepository repository;
@@ -35,7 +35,8 @@ public class MemberServiceTest {
     @Test()
     public void join() {
         Member member = new Member();
-        member.setName("mad");
+        String mockUserName = "mad";
+        member.setName(mockUserName);
         final String mad = member.getName();
         final Member result = this.service.join(member);
         Assertions.assertThat(result.getName()).isEqualTo(mad);

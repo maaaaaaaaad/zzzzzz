@@ -2,8 +2,10 @@ package com.mad.mad.repository;
 
 
 import com.mad.mad.domain.entity.Member;
+import com.mad.mad.domain.repository.IMemberRepository;
 import com.mad.mad.domain.repository.TemporaryIMemberRepository;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
@@ -11,8 +13,13 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TemporaryIMemberRepositoryTest {
 
-    TemporaryIMemberRepository repository = new TemporaryIMemberRepository();
+    private IMemberRepository repository;
     Member member = new Member();
+
+    @BeforeEach
+    public void beforeEach() {
+        repository = new TemporaryIMemberRepository();
+    }
 
     @AfterEach
     public void afterEach() {
